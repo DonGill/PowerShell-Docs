@@ -46,10 +46,12 @@ When you install packages, you are changing the state of your machine. For diagn
 
 - **Authentication Support**
 OneGet now supports finding and installing packages from a repository that requires basic authentication. You can supply your credential to the Find-Package and Install-Package cmdlet. For example:
+``` PowerShell
 Find-Package -Source <SourceWithCredential> -Credential (Get-Credential)
-
+```
 - **Using OneGet Behind a Proxy**
 
 OneGet now takes proxy parameters: -ProxyCredential and -Proxy. Using these parameters, you can specify proxy url and proxy credential to OneGet cmdlets (by default, we use the system proxy settings). For example:
+``` PowerShell
 Find-Package -Source http://www.nuget.org/api/v2/ -Proxy http://www.myproxyserver.com -ProxyCredential (Get-Credential)
-
+```
