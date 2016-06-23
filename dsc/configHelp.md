@@ -17,7 +17,7 @@ You can use comment-based help in DSC configurations. Users can access the help 
 [Get-Help](https://technet.microsoft.com/en-us/library/hh849696.aspx) cmdlet. For more information about PowerShell comment-based help, see 
 [about_Comment_Based_Help](https://technet.microsoft.com/en-us/library/hh847834.aspx).
 
-The following example shows a script that contains a configuration and comment-based help for it:
+The following example shows a script that contains two configurations and comment-based help for each configuration:
 
 ```powershell
 <#
@@ -29,7 +29,7 @@ A brief description of the function or script. This keyword can be used only onc
 A detailed description of the function or script. This keyword can be used only once for each configuration.
 
 
-.PARAMETER ComputerName
+.PARAMETER computername
 The description of a parameter. Add a .PARAMETER keyword for each parameter in the function or script syntax.
 
 Type the parameter name on the same line as the .PARAMETER keyword. Type the parameter description on the lines following the .PARAMETER keyword. 
@@ -39,7 +39,7 @@ The description can include paragraph breaks.
 The Parameter keywords can appear in any order in the comment block, but the function or script syntax determines the order in which the parameters 
 (and their descriptions) appear in help topic. To change the order, change the syntax.
 
-.PARAMETER FilePath
+.PARAMETER filePath
 Provide a PARAMETER section for each parameter that your script or function accepts.
 
 .EXAMPLE
@@ -52,7 +52,7 @@ This example will be labeled "EXAMPLE 2" when help is displayed to the user.
 
 configuration HelpSample1
 {
-    param([string]$ComputerName,[string]$FilePath)
+    param([string]$computername,[string]$filePath)
     File f
     {
 		Contents="Hello World"
@@ -77,8 +77,8 @@ SYNOPSIS
     
     
 SYNTAX
-    HelpSample1 [[-InstanceName] <String>] [[-DependsOn] <String[]>] [[-OutputPath] <String>] [[-ConfigurationData] <Hashtable>] [[-ComputerName] 
-    <String>] [[-FilePath] <String>] [<CommonParameters>]
+    HelpSample1 [[-InstanceName] <String>] [[-DependsOn] <String[]>] [[-OutputPath] <String>] [[-ConfigurationData] <Hashtable>] [[-computername] 
+    <String>] [[-filePath] <String>] [<CommonParameters>]
     
     
 DESCRIPTION
