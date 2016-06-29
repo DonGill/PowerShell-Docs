@@ -42,3 +42,7 @@ and is written on a background thread sometime after a module is imported.
 - [Enable or disable cache cleanup]()
 
 ## Onege
+
+## DSC New Features
+### Enhanced Pull Client Security
+Previously, DSC Pull Client only supports SSL3.0 and TLS1.0 over https connections. When forced to use more secure protocols, pull client stops functioning. In this release, DSC Pull Client drops the support of SSL3.0 and add supports for more secure protocols **TLS1.1** and **TLS1.2**.  
