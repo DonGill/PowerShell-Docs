@@ -1,11 +1,11 @@
-#DSC Module and Configuration Signing validations
+##DSC Module and Configuration Signing validations
 In DSC, configuration and modules are distributed to managed machines from the pull server. If the pull server is compromised, an attacker can potentially modify the configurations and modules on the pull server and have it distributed to all managed machines. Thus compromising even more machines of the customer. 
 
  This is addressed in WMF 5.1. DSC supports validating the digital signatures on catalog and configuration (.MOF) files. This feature will prevent nodes from executing a configuration or module files which are not signed by trusted signer or which are tempered after they have been signed by trusted signer. 
 
 
 
-##How to sign configuration and module 
+###How to sign configuration and module 
 ***
 1. Configuration Files (.MOFS):- 
 The existing PowerShell cmdlet [Set-AuthenticodeSignature](https://technet.microsoft.com/library/hh849819.aspx) is extended to support signing of MOF files.  
@@ -18,9 +18,9 @@ using [Set-AuthenticodeSignature](https://technet.microsoft.com/library/hh849819
     * Place the catalog file inside the module folder.
 By convention, Module catalog file should be placed under the module folder with the same name as the module.
 
-#LocalConfigurationManager Settings to enable signing validations.
+###LocalConfigurationManager Settings to enable signing validations.
 
-##PULL
+####PULL
 The LocalConfigurationManager of a node performs signing validation of modules and configurations based on its current settings. 
 By default, signature validation is disabled. Signature validation can enabled by adding ‘SignatureValidation’ block to the meta-configuration definition of the node as shown below:-
 
@@ -69,7 +69,7 @@ If verification has failed at any stage, for instance if the configuration pulle
 Similarily, Pulling a module whose catalog is not signed will result in the following error:-
 ![Sample Error Output Module](../../images/PullUnisgnedCatalog.png)
 
-##PUSH
+####PUSH
 A configuration delivered via push might be tempered at its source before it delivered to the node. The Local configuration manager will perform similar signature validation steps for pushed or published configuration(s).
 Below is a sample meta-configuration definition to enable signature validation for push.
 
