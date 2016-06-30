@@ -71,7 +71,9 @@ Similarily, Pulling a module whose catalog is not signed will result in the foll
 
 ####PUSH
 A configuration delivered via push might be tempered at its source before it delivered to the node. The Local configuration manager will perform similar signature validation steps for pushed or published configuration(s).
-Below is a sample meta-configuration definition to enable signature validation for push.
+Below is a complete example of signature validation for push.
+
+* Enable signature validation on the node.
 
 ```Powershell
 [DSCLocalConfigurationManager()]
@@ -89,5 +91,34 @@ Configuration EnableSignatureValidation
 }
 EnableSignatureValidation
 Set-DscLocalConfigurationManager -Path .\EnableSignatureValidation -Verbose
-
 ``` 
+* Create a sample configuration file.
+
+```Powershell
+# Sample configuration
+Configuration Test{
+
+    File foo
+    {
+        DestinationPath =  "$env:TEMP\signingTest.txt"
+        Contents = "ABC"
+    }
+}
+Test
+```
+
+* Try pushing the unsigned configuration file in to the node. 
+
+```Powershell
+Start-DscConfiguration -Path .\Test -Wait -Verbose -Force
+``` 
+![ErrorUnsignedMofPushed](../../images/PushUnsignedMof.png)
+
+* Sign the configurtion file using code-signing cert.
+
+![SignMofFile](../../images/SignMofFile.png)
+
+* Try pushing the signed mof file.
+
+![SignMofFile](../../images/PushSignedMof.png)
+
