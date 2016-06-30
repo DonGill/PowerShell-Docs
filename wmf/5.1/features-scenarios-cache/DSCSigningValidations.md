@@ -64,9 +64,11 @@ The localconfigurationmanager will perform the following steps to verify the dig
 
 Note: - Signature validation on module-catalog and configuration is only performed when the configuration is applied to the system for the first time or when the module is downloaded and installed. Consistency run does not validate signature of Current.mof or its module dependencies.
 If verification has failed at any stage, for instance if the configuration pulled from the pullserver is unsigned, then processing of the configuration will be terminate with the error shown below. and all tempoarary files will be deleted.
+
 ![Sample Error Output Configuration](../../images/PullUnsignedConfigFail.png)
 
 Similarily, Pulling a module whose catalog is not signed will result in the following error:-
+
 ![Sample Error Output Module](../../images/PullUnisgnedCatalog.png)
 
 ####PUSH
