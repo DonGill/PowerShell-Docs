@@ -1,7 +1,7 @@
 #DSC Module and Configuration Signing validations
-In DSC, configuration and modules are distributed to managed machines from the pull server.  What if the pull server is compromised ? An attacker can potentially modify the configurations or modules on the pull server and have it distributed to all managed machines. Thus compromising even more machines of the customer. 
+In DSC, configuration and modules are distributed to managed machines from the pull server. If the pull server is compromised, an attacker can potentially modify the configurations and modules on the pull server and have it distributed to all managed machines. Thus compromising even more machines of the customer. 
 
- This is addressed in WMF 5.1, DSC supports validating the digital signatures on catalog and configuration (.MOF) files. This feature will prevent nodes from executing a configuration or module files which are not signed by trusted signer or which are tempered after they have been signed by trusted signer. 
+ This is addressed in WMF 5.1. DSC supports validating the digital signatures on catalog and configuration (.MOF) files. This feature will prevent nodes from executing a configuration or module files which are not signed by trusted signer or which are tempered after they have been signed by trusted signer. 
 
 
 
@@ -50,10 +50,10 @@ EnableSignatureValidation
 Set-DscLocalConfigurationManager -Path .\EnableSignatureValidation -Verbose 
  ```
 
-Setting the above metaconfiguration on a node enables signature validation on downloaded configuration and modules. 
+Setting the above metaconfiguration on a node enables signature validation on downloaded configurations and modules. 
 The localconfigurationmanager will perform the following steps to verify the digital signatures.
 * Verify the signature on a configuration file (.MOF) is valid. It uses the powershell cmdlet [Get-AuthenticodeSignature](https://technet.microsoft.com/library/hh849805.aspx), which is extended in 5.1 to support MOF sigature validation.
-* Verify the certificate authority that authenticated the signer is trusted.
+* Verify the certificate authority that autherized the signer is trusted.
 * Download module/resource dependencies of the configuration to a temp location.
 * Verify the signature of the catalog included inside the module.
     * Find a <moduleName>.cat file and verify its signature using the cmdlet  [Get-AuthenticodeSignature](https://technet.microsoft.com/library/hh849805.aspx).
@@ -70,7 +70,7 @@ Similarily, Pulling a module whose catalog is not signed will result in the foll
 ![Sample Error Output Module](../../images/PullUnisgnedCatalog.png)
 
 ##PUSH
-A configuration delivered via push might be tempered at its source before it delivered to the node as well. The Local configuration manager will perform similar signature validation steps for pushed or published configuration(s).
+A configuration delivered via push might be tempered at its source before it delivered to the node. The Local configuration manager will perform similar signature validation steps for pushed or published configuration(s).
 Below is a sample meta-configuration definition to enable signature validation for push.
 
 ```Powershell
