@@ -71,12 +71,12 @@ configuration VersionTest
 ```
 
 >Note: The ModuleVersion parameter of Import-DscResource is not available in PowerShell 4.0. In PowerShell 4.0, you can specify a module version by passing a module specification 
->object to the ModuleName parameter of Import-DscResource. A module specification object is a hash table that contains ModuleName and RequiredVersion  keys. For example:
+>object to the ModuleName parameter of Import-DscResource. A module specification object is a hash table that contains ModuleName and ModuleVersion keys. For example:
 
 ```powershell
 configuration VersionTest
 {
-    Import-DscResource -ModuleName (@{ModuleName='xFailOverCluster'; RequiredVersion='1.1'} )
+    Import-DscResource -ModuleName (@{ModuleName='xFailOverCluster'; ModuleVersion='1.1'} )
 
     Node 'localhost'
     {
